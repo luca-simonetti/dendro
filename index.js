@@ -11,6 +11,11 @@ class Dendro {
     }
 
     static createFromJSON(json, childrenAttrName) {
+		// json = { nodes: [], question:"a", label:"b"}
+		// childrenAttrName = "nodes"
+		// with this row I get:
+		// children = json.nodes
+		// clearedJSON = { question:"a", label:"b" } nodes is removed.
         let {[childrenAttrName]:children, ...clearedJSON} = json;
         var tmpNode = new TreeNode(clearedJSON);
         for(var j in children) {
