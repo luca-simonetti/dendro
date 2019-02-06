@@ -1,0 +1,24 @@
+{
+  "name": "@luca-simonetti/dendro",
+  "version": "0.0.5",
+  "description": "Tree data structure JS library",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luca-simonetti/dendro.git"
+  },
+  "keywords": [
+    "tree",
+    "data",
+    "structure"
+  ],
+  "author": "Nohup",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luca-simonetti/dendro/issues"
+  },
+  "homepage": "https://github.com/luca-simonetti/dendro#readme"
+}
