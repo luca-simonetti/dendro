@@ -2,11 +2,25 @@
 // - navigate tree from array of indices -> test some more
 // - delete child with subtree
 // - remove node -> decide how to manage children
-
 class Dendro {
-	constructor() {
-		this.root = new TreeNode();
-	}
+	constructor(data = null) {
+		this.root = new TreeNode(data);
+    }
+    createNode(data = null) {
+        return new TreeNode(data)
+    }
+
+    static createFromJSON(json, childrenAttrName) {
+        let {[childrenAttrName]:children, ...clearedJSON} = json;
+        var tmpNode = new TreeNode(clearedJSON);
+        for(var j in children) {
+            if(children[j]) {
+                tmpNode.appendChild(Dendro.createFromJSON(children[j], childrenAttrName))
+            }
+        }
+        return tmpNode;
+    }
+
 }
 
 class TreeNode {
@@ -140,7 +154,12 @@ class TreeNode {
 
 	// could be made more efficient with iteration, too complex for a simple prototype at the moment
 	// arr should be array of indices, each one indicates nth child of node
-	// ex: [0,1,1] root->0th child->1st child->1st child
+    // ex: [0,1,1] root->0th child->1st child->1st child
+    /**
+     * 
+     * @param {*} arr 
+     * @returns TreeNode
+     */
 	findNodeFromIndices(arr) {
 		if (arr.length === 0) {
 			return this;
@@ -191,22 +210,22 @@ class TreeNode {
 	}
 }
 
-let test = new TreeNode(0);
-test.appendChild(new TreeNode(1));
-test.appendChild(new TreeNode(2));
-test.appendChild(new TreeNode(10));
-test.left_child.appendChild(new TreeNode(4));
-test.left_child.appendChild(new TreeNode(3));
-test = test.findNode(2);
+// let test = new TreeNode(0);
+// test.appendChild(new TreeNode(1));
+// test.appendChild(new TreeNode(2));
+// test.appendChild(new TreeNode(10));
+// test.left_child.appendChild(new TreeNode(4));
+// test.left_child.appendChild(new TreeNode(3));
+// test = test.findNode(2);
 
-test.appendChild(new TreeNode(11));
-test.appendChild(new TreeNode(12));
-test.appendChild(new TreeNode(13));
-test = test.getRoot();
+// test.appendChild(new TreeNode(11));
+// test.appendChild(new TreeNode(12));
+// test.appendChild(new TreeNode(13));
+// test = test.getRoot();
+// // test.printTree();
+
+// test = test.findNodeFromIndices([0, 1]);
 // test.printTree();
-
-test = test.findNodeFromIndices([0, 1]);
-test.printTree();
 
 
 // first simple tests

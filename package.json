@@ -1,6 +1,6 @@
 {
   "name": "@luca-simonetti/dendro",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Tree data structure JS library",
   "main": "index.js",
   "scripts": {
