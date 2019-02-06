@@ -5,26 +5,26 @@
 class Dendro {
 	constructor(data = null) {
 		this.root = new TreeNode(data);
-    }
-    createNode(data = null) {
-        return new TreeNode(data)
-    }
+	}
+	createNode(data = null) {
+		return new TreeNode(data)
+	}
 
-    static createFromJSON(json, childrenAttrName) {
+	static createFromJSON(json, childrenAttrName) {
 		// json = { nodes: [], question:"a", label:"b"}
 		// childrenAttrName = "nodes"
 		// with this row I get:
 		// children = json.nodes
 		// clearedJSON = { question:"a", label:"b" } nodes is removed.
-        let {[childrenAttrName]:children, ...clearedJSON} = json;
-        var tmpNode = new TreeNode(clearedJSON);
-        for(var j in children) {
-            if(children[j]) {
-                tmpNode.appendChild(Dendro.createFromJSON(children[j], childrenAttrName))
-            }
-        }
-        return tmpNode;
-    }
+		let { [childrenAttrName]: children, ...clearedJSON } = json;
+		var tmpNode = new TreeNode(clearedJSON);
+		for (var j in children) {
+			if (children[j]) {
+				tmpNode.appendChild(Dendro.createFromJSON(children[j], childrenAttrName))
+			}
+		}
+		return tmpNode;
+	}
 
 }
 
@@ -159,7 +159,7 @@ class TreeNode {
 
 	// could be made more efficient with iteration, too complex for a simple prototype at the moment
 	// arr should be array of indices, each one indicates nth child of node
-    // ex: [0,1,1] root->0th child->1st child->1st child
+	// ex: [0,1,1] root->0th child->1st child->1st child
     /**
      * 
      * @param {*} arr 
